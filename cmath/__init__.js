@@ -69,5 +69,62 @@ var $builtinmodule=function(){
             throw new Sk.builtin.TypeError("exp() takes exactly one arguments (0 given)");
         }
     });
+    mod.log = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.log is not yet implemented");
+    });
+    mod.log10 = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.log10 is not yet implemented");
+    });
+    mod.sqrt = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.sqrt is not yet implemented");
+    });
+    mod.acos = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.acos is not yet implemented");
+    });
+    mod.asin = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.asin is not yet implemented");
+    });
+    mod.atan = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.atan is not yet implemented");
+    });
+    mod.cos = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.cos is not yet implemented");
+    });
+    mod.sin = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.sin is not yet implemented");
+    });
+    mod.tan = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.tan is not yet implemented");
+    });
+    mod.acosh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.acosh is not yet implemented");
+    });
+    mod.asinh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.asinh is not yet implemented");
+    });
+    mod.atanh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.atanh is not yet implemented");
+    });
+    mod.cosh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.cosh is not yet implemented");
+    });
+    mod.sinh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.sinh is not yet implemented");
+    });
+    mod.tanh = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.tanh is not yet implemented");
+    });
+    mod.isfinite = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.isfinite is not yet implemented");
+    });
+    mod.isinf = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.isinf is not yet implemented");
+    });
+    mod.isnan = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.isnan is not yet implemented");
+    });
+    mod.isclose = new Sk.builtin.func(function() {
+        throw new Sk.builtin.NotImplementedError("cmath.isclose is not yet implemented");
+    });
     return mod;
 };

@@ -69,6 +69,9 @@ var $builtinmodule=function(){
             throw new Sk.builtin.TypeError("exp() takes exactly one arguments (0 given)");
         }
     });
+    mod.pi = Sk.builtin.float_(3.141592653589793);
+    mod.e = Sk.builtin.float_(2.718281828459045);
+    mod.tau = Sk.builtin.float_(6.283185307179586);
     mod.log = new Sk.builtin.func(function() {
         throw new Sk.builtin.NotImplementedError("cmath.log is not yet implemented");
     });

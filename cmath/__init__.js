@@ -1,8 +1,10 @@
-var $builtinmodule=function(){
+var $builtinmodule=function() {
+    
     var mod = {};
     var isType = function (x, type) {
         return Sk.builtin.isinstance(x, Sk.builtin[type]).v;
     };
+    
     var typeErrors = function (x) {
         if (isType(x, 'str')) {
             throw new Sk.builtin.TypeError("must be real number, not str");
@@ -12,66 +14,64 @@ var $builtinmodule=function(){
             throw new Sk.builtin.TypeError("must be real number, not NoneType");
         }
     };
+    
     var phase = function (x) {
-        if (x) {
-            let a = 0, b = 0;
-            typeErrors(x)
-            if (x.real && x.imag) {
-                a = x.real.v;
-                b = x.imag.v;
-            }
-            return Sk.builtin.float_(Math.atan2(a, b));
-        } else {
-            throw new Sk.builtin.TypeError("phase() takes exactly one arguments (0 given)");
-        }
+        let a = 0, b = 0;
+        typeErrors(x)
+        if (x.real && x.imag) {
+            a = x.real.v;
+            b = x.imag.v;
+        }   
+        Sk.builtin.pyCheckType("b", "number", Sk.builtin.checkNumber(b));
+        Sk.builtin.pyCheckType("a", "number", Sk.builtin.checkNumber(a));    
+        return Sk.builtin.float_(Math.atan2(Sk.builtin.asnum$(b), Sk.builtin.asnum$(a)));
     };
-    mod.phase = new Sk.builtin.func(phase);
+    mod.phase = new Sk.builtin.func(function (x) {
+        Sk.builtin.pyCheckArgsLen("phase", arguments.length, 1, 1);
+        
+        return phase(x);
+    });
+    
     mod.rect = new Sk.builtin.func(function (r, phi) {
-        if (r && phi) {
-            typeErrors(r)
-            typeErrors(phi)
-            let a = r.v*Math.cos(phi.v);
-            let b = r.v*Math.sin(phi.v);
-            return Sk.builtin.complex(Sk.builtin.float_(a), Sk.builtin.float_(b));
-        } else if (!r && !phi) {
-            throw new Sk.builtin.TypeError("rect() takes exactly 2 arguments (0 given)");
-        } else {
-            throw new Sk.builtin.TypeError("rect() takes exactly 2 arguments (1 given)");
-        }
+        Sk.builtin.pyCheckArgsLen("rect", arguments.length, 2, 2);
+        typeErrors(r)
+        typeErrors(phi)
+        let a = r.v*Math.cos(phi.v);
+        let b = r.v*Math.sin(phi.v);
+        
+        return Sk.builtin.complex(Sk.builtin.float_(a), Sk.builtin.float_(b));
     });
+    
     mod.polar = new Sk.builtin.func(function (x) {
-        if (x) {
-            typeErrors(x);
-            let r = x.v, phi = 0;
-            if (x.real && x.imag) {
-                r = Sk.builtin.abs(x).v;
-                phi = phase(x).v;
-            }
-            return Sk.builtin.tuple([Sk.builtin.float_(r), Sk.builtin.float_(phi)]);
-        } else {
-            throw new Sk.builtin.TypeError("polar() takes exactly one arguments (0 given)");
+        Sk.builtin.pyCheckArgsLen("polar", arguments.length, 1, 1);
+        typeErrors(x);
+        let r = x.v, phi = 0;
+        if (x.real && x.imag) {
+            r = Sk.builtin.abs(x).v;
+            phi = phase(x).v;
         }
+
+        return Sk.builtin.tuple([Sk.builtin.float_(r), Sk.builtin.float_(phi)]);
     });
+    
     mod.exp = new Sk.builtin.func(function (x) {
-        if (x) {
-            typeErrors(x);
-            var exp = function (i, j) {
-                let tmp = Math.exp(i);
-                let a = tmp*Math.cos(j);
-                let b = tmp*Math.sin(j);
-                return Sk.builtin.complex(Sk.builtin.float_(a), Sk.builtin.float_(b));
-            }
-            if (x.real && x.imag) {
-                return exp(x.real.v, x.imag.v);
-            }
-            return exp(x.v, 0);
-        } else {
-            throw new Sk.builtin.TypeError("exp() takes exactly one arguments (0 given)");
+        Sk.builtin.pyCheckArgsLen("polar", arguments.length, 1, 1);
+        typeErrors(x);
+        var exp = function (i, j) {
+            let a = tmp*Math.cos(j);
+            let b = tmp*Math.sin(j);
+            return Sk.builtin.complex(Sk.builtin.float_(a), Sk.builtin.float_(b));
         }
+        if (x.real && x.imag) {
+            return exp(x.real.v, x.imag.v);
+        }
+        return exp(x.v, 0);
     });
+    
     mod.pi = Sk.builtin.float_(3.141592653589793);
     mod.e = Sk.builtin.float_(2.718281828459045);
     mod.tau = Sk.builtin.float_(6.283185307179586);
+    
     mod.log = new Sk.builtin.func(function() {
         throw new Sk.builtin.NotImplementedError("cmath.log is not yet implemented");
     });

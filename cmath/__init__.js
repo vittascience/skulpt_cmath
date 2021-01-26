@@ -58,10 +58,10 @@ var $builtinmodule=function() {
         Sk.builtin.pyCheckArgsLen("polar", arguments.length, 1, 1);
         typeErrors(x);
         if (x.real && x.imag) {
-            let a = exp(x.real.v)*Math.cos(x.imag.v);
-            let b = exp(x.real.v)*Math.sin(x.imag.v);
+            let a = Math.exp(x.real.v)*Math.cos(x.imag.v);
+            let b = Math.exp(x.real.v)*Math.sin(x.imag.v);
         } else {
-            let a = exp(x.v);
+            let a = Math.exp(x.v);
             let b = 0;
         }
         

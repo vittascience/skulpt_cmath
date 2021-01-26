@@ -55,14 +55,14 @@ var $builtinmodule=function() {
     });
     
     mod.exp = new Sk.builtin.func(function (x) {
-        Sk.builtin.pyCheckArgsLen("polar", arguments.length, 1, 1);
+        Sk.builtin.pyCheckArgsLen("exp", arguments.length, 1, 1);
         typeErrors(x);
+        let a = 0, b = 0;
         if (x.real && x.imag) {
-            let a = Math.exp(x.real.v)*Math.cos(x.imag.v);
-            let b = Math.exp(x.real.v)*Math.sin(x.imag.v);
+            a = Math.exp(x.real.v)*Math.cos(x.imag.v);
+            b = Math.exp(x.real.v)*Math.sin(x.imag.v);
         } else {
-            let a = Math.exp(x.v);
-            let b = 0;
+            a = Math.exp(x.v);
         }
         
         return Sk.builtin.complex(Sk.builtin.float_(a), Sk.builtin.float_(b));
